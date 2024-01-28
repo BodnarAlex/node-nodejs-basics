@@ -9,7 +9,7 @@ const remove = async () => {
     try {
         await fs.unlink(pathToDelete);
     } catch {
-        throw new Error ("FS operation failed");
+        throw new Error("FS operation failed");
     }
 };
 

@@ -9,9 +9,9 @@ const list = async () => {
     try {
         const files = await fs.readdir(pathToCatalog);
         for (const file of files)
-          console.log(file);
+            console.log(file);
     } catch {
-        throw new Error ("FS operation failed");
+        throw new Error("FS operation failed");
     }
 };
 
