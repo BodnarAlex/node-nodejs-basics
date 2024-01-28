@@ -8,7 +8,7 @@ const greeting = "I am fresh and young";
 
 const create = async () => {
     try {
-        fs.writeFile(PathTo, greeting, {flag: "wx"});
+        await fs.writeFile(PathTo, greeting, { flag: "wx" });
     } catch {
         throw new Error ("FS operation failed");
     }
