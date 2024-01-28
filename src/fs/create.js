@@ -1,7 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
+import { fileURLToPath } from 'url';
 
-const __dirname = import.meta.dirname;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PathTo = path.resolve(__dirname, "files", "fresh.txt");
 
 const greeting = "I am fresh and young";

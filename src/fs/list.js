@@ -1,7 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
+import { fileURLToPath } from 'url';
 
-const __dirname = import.meta.dirname;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pathToCatalog = path.resolve(__dirname, "files");
 
 const list = async () => {
