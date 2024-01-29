@@ -1,15 +1,14 @@
 const parseArgs = () => {
     const args = process.argv.slice(2);
-    const newArr = Array.from({ length: 2 }, (item, i) =>
-        args.slice(i * 2, (i + 1) * 2)
-    );
-    const finalString = newArr.reduce((prev, [key, value]) => {
-        if (key.includes("--")) {
-            key = key.replace("--", "");
-            return `${prev}${key} is ${value}, `;
+    let finalString = "";
+    for (let i = 0; i < args.length; i++) {
+        if (args[i].startsWith("--")) {
+            finalString = `${finalString}${args[i].slice(2)} is ${args[i + 1]}, `;
+            i++;
         }
-    }, "")
-    console.log(finalString);
+    }
+    console.log(finalString.slice(0, -2));
 };
 
 parseArgs();
+
