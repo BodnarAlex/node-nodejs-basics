@@ -18,7 +18,11 @@ const performCalculations = async () => {
             });
 
             worker.on("message", msg => {
-                resolve({ status: "resolved", data: msg });
+                if (msg === Number(msg))
+                    resolve({ status: "resolved", data: msg });
+                else
+                    resolve({ status: "error", data: null });
+
             })
             worker.on("error", err => {
                 resolve({ status: "error", data: null });
