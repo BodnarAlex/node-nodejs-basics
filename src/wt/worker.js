@@ -4,9 +4,8 @@ import { workerData, parentPort } from "worker_threads";
 const nthFibonacci = (n) => n < 2 ? n : nthFibonacci(n - 1) + nthFibonacci(n - 2);
 
 const sendResult = () => {
-    const data = workerData;
-    const info = nthFibonacci(data);
-    parentPort.postMessage({ status: "resolved", data: info });
+    const info = nthFibonacci(workerData);
+    parentPort.postMessage(info);
 };
 
 sendResult();

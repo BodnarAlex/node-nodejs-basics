@@ -13,19 +13,21 @@ const performCalculations = async () => {
     const cpuNumb = os.cpus().length;
     console.log("cpuNumb: ", cpuNumb);
 
-    const worker = new Worker(pathTo, {
-        workerData: cpuNumb
-    });
+    const promise = new Promise((resolve) => {
+        const worker = new Worker(pathTo, {
+            workerData: cpuNumb
+        });
 
-    worker.on("message", msg => {
-        finalArray.push({ status: "resolved", data: msg });
-        console.log(finalArray);
+        worker.on("message", msg => {
+            resolve({ status: "resolved", data: msg });
+        })
+        worker.on("error", err => {
+            resolve({ status: "error", data: null });
+        })
     })
-    worker.on("error", err => {
-    finalArray.push({ status: "error", data: null });
-    console.log(finalArray);
-})
-console.log(finalArray);
+    finalArray.push(promise);
+    const result = await Promise.all(finalArray);
+    console.log(result);
 };
 
 await performCalculations();
