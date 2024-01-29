@@ -8,8 +8,7 @@ const pathToCatalog = path.resolve(__dirname, "files");
 const list = async () => {
     try {
         const files = await fs.readdir(pathToCatalog);
-        for (const file of files)
-            console.log(file);
+        console.log(files);
     } catch {
         throw new Error("FS operation failed");
     }
