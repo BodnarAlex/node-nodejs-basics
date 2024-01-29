@@ -7,25 +7,25 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pathTo = path.resolve(__dirname, "worker.js");
 
 const performCalculations = async () => {
-
     let finalArray = [];
     const ten = 10;
-    const cpuNumb = os.cpus().length;
-    console.log("cpuNumb: ", cpuNumb);
+    const cpuCount = os.cpus().length;
 
-    const promise = new Promise((resolve) => {
-        const worker = new Worker(pathTo, {
-            workerData: cpuNumb
-        });
+    for (let i = 0; i < cpuCount; i++) {
+        const promise = new Promise((resolve) => {
+            const worker = new Worker(pathTo, {
+                workerData: ten + i
+            });
 
-        worker.on("message", msg => {
-            resolve({ status: "resolved", data: msg });
+            worker.on("message", msg => {
+                resolve({ status: "resolved", data: msg });
+            })
+            worker.on("error", err => {
+                resolve({ status: "error", data: null });
+            })
         })
-        worker.on("error", err => {
-            resolve({ status: "error", data: null });
-        })
-    })
-    finalArray.push(promise);
+        finalArray.push(promise);
+    }
     const result = await Promise.all(finalArray);
     console.log(result);
 };
