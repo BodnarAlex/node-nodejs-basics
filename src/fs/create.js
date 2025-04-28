@@ -11,6 +11,7 @@ const pathToFile = path.resolve(__dirname, "files", fileName);
 const create = async () => {
     try {
         await writeFile(pathToFile, fileContext, { encoding: 'utf8', flag: 'wx' });
+        console.log('File created successfully');
     } catch (error) {
         throw new Error(errorText);
     }

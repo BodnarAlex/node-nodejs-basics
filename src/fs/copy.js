@@ -7,7 +7,6 @@ const pathToCopyCatalog = path.resolve(__dirname, "files");
 const pathToPasteCatalog = path.resolve(__dirname, "files_copy");
 
 const copy = async () => {
-
     try {
         await access(pathToPasteCatalog);
         throw new Error(errorText);

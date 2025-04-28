@@ -19,6 +19,7 @@ const decompress = async () => {
         streamWrite,
         err => {
             if (err) throw err;
+            else console.log("File decompressed successfully");
         });
 };
 

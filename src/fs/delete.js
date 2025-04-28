@@ -10,6 +10,7 @@ const pathToFile = path.resolve(__dirname, "files", fileName);
 const remove = async () => {
     try {
         await unlink(pathToFile);
+        console.log('File deleted successfully');
     } catch (error) {
         throw new Error(errorText);
     }

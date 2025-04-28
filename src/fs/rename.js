@@ -27,6 +27,8 @@ const rename = async () => {
     }
 
     await renameFiles(pathToOldFile, pathToNewFile);
+    console.log('File renamed successfully');
+
 };
 
 await rename();
