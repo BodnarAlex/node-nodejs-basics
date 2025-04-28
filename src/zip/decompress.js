@@ -11,7 +11,7 @@ const pathToZlib = path.resolve(__dirname, "files", "archive.gz");
 const decompress = async () => {
     const streamRead = fs.createReadStream(pathToZlib);
     const streamWrite = fs.createWriteStream(pathToCompress);
-    const transform = zlib.createUnzip();
+    const transform = zlib.createGunzip();
 
     stream.pipeline(
         streamRead,
